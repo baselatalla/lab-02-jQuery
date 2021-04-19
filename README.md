@@ -1,15 +1,17 @@
 # lab-02-jQuery
 
+Done by Bayan Al-Khatib  & Basel Atalla (pair programming).
 
-Number and name of feature: ________________________________
 
-Estimate of time needed to complete: _____
+Number and name of feature: #1: Display images
 
-Start time: _____
+Estimate of time needed to complete: 1 hour
 
-Finish time: _____
+Start time: 06:00pm
 
-Actual time needed to complete: _____
+Finish time: 08:00pm
+
+Actual time needed to complete: 2 hour
 
 
 Number and name of feature: ________________________________
