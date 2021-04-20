@@ -1,6 +1,5 @@
+/* eslint-disable no-undef */
 'use strict';
-
-
 
 
 function Gallery(animal) {
