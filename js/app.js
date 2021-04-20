@@ -33,7 +33,7 @@ Gallery.readjson =() =>{
 
   let notRepeated=[];
 
-  $.ajax('/data/page-1.json',ajaxsettings)
+  $.ajax('./data/page-1.json',ajaxsettings)
     .then(data =>{
       data.forEach((element) => {
         let animalImage = new Gallery(element);
