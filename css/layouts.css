@@ -1,14 +1,58 @@
-img{
-    width: 20px;
-    height: 20px;
-}
-div{
-    float: left;
-}
-p,h2{
-    display: none;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto&display=swap');
+
+header{
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    background-color: crimson;
+    margin: auto;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
 }
 
-.photo-template{
+footer{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background-color: crimson;
+    
+}
+h1{
+    font-size: 50px;
+    font-family: 'Dancing Script', cursive;
+}
+img{
+    width:280px ;
+    height: 300px;
+    
+}
+
+div{
+    margin-left:15px ;
+    margin-right: 15px;
+    margin-top: 20px;
+    float: left;;
+    border: .7px solid crimson ;
+    border-radius: 20px;
+    text-align: center;
+}
+h2,p{
+    width: 350px;
+    height: 40px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    
+}
+p{
+    font-size: small;
+}
+.gallery{
+    border: none;
+    display: block;
+    
+}
+.photo-template {
     display:none ;
 }
+
