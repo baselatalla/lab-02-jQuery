@@ -1,75 +1,92 @@
+/* eslint-disable no-undef */
 'use strict';
 
-
-
+let allImagesData = [];
+let notRepeated = [];
+let dataSourcePageNumber = 1;
 
 function Gallery(animal) {
   this.image_url = animal.image_url;
-  this.name = animal.title;
+  this.title = animal.title;
   this.description = animal.description;
   this.keyword = animal.keyword;
   this.horns = animal.horns;
+  allImagesData.push(this);
 }
 
-let $galleryClone;
+
 
 Gallery.prototype.render = function (){
-
-  $galleryClone = $('.photo-template').clone();
-  $('.gallery').append($galleryClone);
-  $galleryClone.find('h2').text(this.name);
-  $galleryClone.find('img').attr('src', this.image_url);
-  $galleryClone.find('p').text(this.description);
-  $galleryClone.removeClass('photo-template');
-  $galleryClone.attr('class',this.keyword);
+  let template = $('.photo-template').html();
+  let gallaryTemplate = Mustache.render(template,this);
+  $('section').append(gallaryTemplate);
 };
 
-Gallery.readjson =() =>{
 
-  const ajaxsettings ={
-    method:'get',
-    datatype:'json'
-  };
 
-  let notRepeated=[];
+const ajaxsettings ={
+  method:'get',
+  datatype:'json'
+};
 
-  $.ajax('./data/page-1.json',ajaxsettings)
+
+let pageData = function(){
+  $.ajax(`./data/page-${dataSourcePageNumber}.json`,ajaxsettings)
     .then(data =>{
       data.forEach((element) => {
         let animalImage = new Gallery(element);
         animalImage.render();
-        if(notRepeated.includes(animalImage.keyword)!==true){
+        notRepeated = [];
+        if(!notRepeated.includes(animalImage.keyword)){
           notRepeated.push(animalImage.keyword);
-          $('.selectItem').append(`<option value="${animalImage.keyword}"> ${animalImage.keyword} </option>`);
+          $('select').append(`<option class="options" value="${animalImage.keyword}"> ${animalImage.keyword.toUpperCase()} </option>`);
         }
       });
     });
+
+
+  $('select').on('change',function(){
+    let select = $(this).val();
+    $('div').hide();
+    $(`.${select}`).show();
+  });
 };
 
+pageData();
 
-$(() => Gallery.readjson());
+$('#page1').on('click',() =>{
+  $('section').empty();
+  $('options').empty();
+  dataSourcePageNumber =1;
+  notRepeated = [];
+  pageData();
 
-$('.selectItem').on('change',function(event){
-  $('.gallery').empty();
-  Gallery.read =() =>{
+});
 
-    const ajaxsettings ={
-      method:'get',
-      datatype:'json'
-    };
+$('#page2').on('click',() =>{
+  $('section').empty();
+  $('options').empty();
+  dataSourcePageNumber =2;
+  notRepeated = [];
+  pageData();
+  
+  // $.ajax('./data/page-2.json',ajaxsettings)
+  //   .then(data1 =>{
+  //     data1.forEach((element) => {
+  //       let animalImage = new Gallery(element);
+  //       animalImage.render();
+  //       console.log(animalImage.keyword);
+  //       if(!notRepeated2.includes(animalImage.keyword)){
+  //         notRepeated2.push(animalImage.keyword);
+  //         $('select').append(`<option value="${animalImage.keyword}"> ${animalImage.keyword.toUpperCase()} </option>`);
+  //       }
+  //     });
+  //   });
 
 
-    $.ajax('/data/page-1.json',ajaxsettings)
-      .then(data =>{
-        data.forEach((element) => {
-          let animalImage = new Gallery(element);
-          if(event.target.value === animalImage.keyword){
-            animalImage.render();
-          }else if(event.target.value ==='default'){
-            animalImage.render();
-          }});
-      });
-
-  };
-  $(() => Gallery.read());
+  // $('.selectItem').on('change',function(){
+  //   let select = $(this).val();
+  //   $('div').hide();
+  //   $(`.${select}`).show();
+  // });
 });
