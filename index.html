@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto&display=swap" rel="stylesheet">
 
 <script class='photo-template' type="text/x-tmpl-mustache">
-  <div class="{{keyword}} , {{horns}}">
+  <div class="{{keyword}} image">
     <h2> {{title}}</h2>
     <img src="{{image_url}}" >
     <p>{{description}}</p>
@@ -22,17 +22,18 @@
   <body>
     <header>
       <h1>The Gallery of Horns</h1>
-      <button id="page1">Page 1</button>
+      <article>
+        <button id="page1">Page 1</button>
        <button id="page2">Page 2</button>
-
-      <label for="selectStoreMethod">Store By</label>
-      <select name="selectStoreMethod" class="selectStoreMethod">
-        <option value="defult">Defult</option>
-        <option value="title">Title</option>
-        <option value="horns">Horns</option>
-      </select>
-
-      <select class='selectItem'></select>
+      </article>
+      <article>
+        <select name="selectStoreMethod" class="selectStoreMethod">
+          <option value="defult">Store By</option>
+          <option value="title">Title</option>
+          <option value="horns">Horns</option>
+        </select>
+        <select class='selectItem'></select>
+      </article>
 
     </header>
     <main>

@@ -64,8 +64,6 @@ let pageData = function(sortIndex){
         }
       });
     });
-
-
   $('.selectItem').on('change',function(){
     let selectItem = $(this).val();
     if (selectItem !== 'default'){
@@ -74,6 +72,7 @@ let pageData = function(sortIndex){
     }else {$('div').show();}
   });
 };
+
 
 pageData(0);
 

@@ -1,8 +1,20 @@
 select{
-    padding:20px;
+    padding:15px 20px;
     font-size:16px ;
     text-align:center;
     line-height: normal;
     border-radius: 12px;
-    background-color: rgb(250, 172, 70);
+    background-color: #ECECEC;
+    border: groove 1px  rgb(59, 59, 247) ;
+}
+
+header h1 {
+    background-color: rgb(59, 59, 247,.5);
+    padding:15px ;
+}
+
+button{
+    padding:10px 15px;
+    border-radius:20px ;
+    border: groove 1px  rgb(59, 59, 247) ;
 }
