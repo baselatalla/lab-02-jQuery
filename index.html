@@ -13,7 +13,7 @@
 
 <script class='photo-template' type="text/x-tmpl-mustache">
   <div class="{{keyword}} , {{horns}}">
-    <h2> Animale name: {{title}}</h2>
+    <h2> {{title}}</h2>
     <img src="{{image_url}}" >
     <p>{{description}}</p>
   </div>
@@ -24,10 +24,16 @@
       <h1>The Gallery of Horns</h1>
       <button id="page1">Page 1</button>
        <button id="page2">Page 2</button>
-      
-      <select class='selectItem'>
-        <option value="default" id="0">Filter by Keyword</option>
+
+      <label for="selectStoreMethod">Store By</label>
+      <select name="selectStoreMethod" class="selectStoreMethod">
+        <option value="defult">Defult</option>
+        <option value="title">Title</option>
+        <option value="horns">Horns</option>
       </select>
+
+      <select class='selectItem'></select>
+
     </header>
     <main>
       <section>
