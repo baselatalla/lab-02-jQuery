@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
 'use strict';
 
+
 let allImagesData = [];
 let notRepeated = [];
 let dataSourcePageNumber = 1;
+
 
 function Gallery(animal) {
   this.image_url = animal.image_url;
@@ -62,8 +64,6 @@ let pageData = function(sortIndex){
         }
       });
     });
-
-
   $('.selectItem').on('change',function(){
     let selectItem = $(this).val();
     if (selectItem !== 'default'){
@@ -72,6 +72,7 @@ let pageData = function(sortIndex){
     }else {$('div').show();}
   });
 };
+
 
 pageData(0);
 
