@@ -31,64 +31,78 @@ const ajaxsettings ={
   datatype:'json'
 };
 
+let sortedArray =[];
 
-let pageData = function(){
+let pageData = function(sortIndex){
   $.ajax(`./data/page-${dataSourcePageNumber}.json`,ajaxsettings)
     .then(data =>{
-      data.forEach((element) => {
+      $('.selectItem').append('<option  value="default"> Filter by Keyword </option>');
+      notRepeated = [];
+      sortedArray = data;
+      if(sortIndex === 1){
+        sortedArray.sort((a,b)=>{
+          if (a.title < b.title){
+            return -1;
+          }
+          else if (a.title > b.title) return 1;
+          else return 0;
+        });}else if(sortIndex === 2){
+        sortedArray.sort((a,b)=>{
+          if (a.horns < b.horns){
+            return -1;
+          }
+          else if (a.horns > b.horns) return 1;
+          else return 0;
+        });}
+      console.log(data);
+      sortedArray.forEach((element) => {
         let animalImage = new Gallery(element);
         animalImage.render();
-        notRepeated = [];
         if(!notRepeated.includes(animalImage.keyword)){
           notRepeated.push(animalImage.keyword);
-          $('select').append(`<option class="options" value="${animalImage.keyword}"> ${animalImage.keyword.toUpperCase()} </option>`);
+          $('.selectItem').append(`<option class="options" value="${animalImage.keyword}"> ${animalImage.keyword.toUpperCase()} </option>`);
         }
       });
     });
 
 
-  $('select').on('change',function(){
-    let select = $(this).val();
-    $('div').hide();
-    $(`.${select}`).show();
+  $('.selectItem').on('change',function(){
+    let selectItem = $(this).val();
+    if (selectItem !== 'default'){
+      $('div').hide();
+      $(`.${selectItem}`).show();
+    }else {$('div').show();}
   });
 };
 
-pageData();
+pageData(0);
 
 $('#page1').on('click',() =>{
   $('section').empty();
-  $('options').empty();
+  $('.selectItem').empty();
   dataSourcePageNumber =1;
-  notRepeated = [];
-  pageData();
+  pageData(0);
 
 });
 
 $('#page2').on('click',() =>{
   $('section').empty();
-  $('options').empty();
+  $('.selectItem').empty();
   dataSourcePageNumber =2;
-  notRepeated = [];
-  pageData();
-  
-  // $.ajax('./data/page-2.json',ajaxsettings)
-  //   .then(data1 =>{
-  //     data1.forEach((element) => {
-  //       let animalImage = new Gallery(element);
-  //       animalImage.render();
-  //       console.log(animalImage.keyword);
-  //       if(!notRepeated2.includes(animalImage.keyword)){
-  //         notRepeated2.push(animalImage.keyword);
-  //         $('select').append(`<option value="${animalImage.keyword}"> ${animalImage.keyword.toUpperCase()} </option>`);
-  //       }
-  //     });
-  //   });
+  pageData(0);
+
+});
 
 
-  // $('.selectItem').on('change',function(){
-  //   let select = $(this).val();
-  //   $('div').hide();
-  //   $(`.${select}`).show();
-  // });
+$('.selectStoreMethod').on('change', function(){
+  let sortType = $(this).val();
+  $('section').empty();
+  $('.selectItem').empty();
+  if(sortType === 'title'){
+    pageData(1);
+  }else if(sortType === 'horns'){
+    $('section').empty();
+    $('.selectItem').empty();
+    pageData(2);
+  } else{pageData(0); }
 });
