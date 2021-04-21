@@ -1,12 +1,11 @@
 /* eslint-disable no-undef */
 'use strict';
 
-<<<<<<< HEAD
-=======
+
 let allImagesData = [];
 let notRepeated = [];
 let dataSourcePageNumber = 1;
->>>>>>> 0689a627c44505cc204183ce6b9414ddcd5d535d
+
 
 function Gallery(animal) {
   this.image_url = animal.image_url;
